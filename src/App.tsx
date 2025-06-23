@@ -53,7 +53,14 @@ export const App: React.FC = () => {
           className={classNames('button is-info', {
             'is-light': sortType !== SortType.Alphabetically,
           })}
-          onClick={() => setSortType(SortType.Alphabetically)}
+          onClick={() => {
+            setSortType(prev =>
+              // eslint-disable-next-line max-len
+              prev === SortType.Alphabetically
+                ? SortType.None
+                : SortType.Alphabetically,
+            );
+          }}
         >
           Sort alphabetically
         </button>
@@ -63,7 +70,11 @@ export const App: React.FC = () => {
           className={classNames('button is-success', {
             'is-light': sortType !== SortType.ByLength,
           })}
-          onClick={() => setSortType(SortType.ByLength)}
+          onClick={() => {
+            setSortType(prev =>
+              prev === SortType.ByLength ? SortType.None : SortType.ByLength,
+            );
+          }}
         >
           Sort by length
         </button>
